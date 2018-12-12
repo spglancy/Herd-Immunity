@@ -30,6 +30,7 @@ class Simulation(object):
         HINT: Look in the if __name__ == "__main__" function at the bottom.
         '''
         self.vacc_count = 0
+        self.vacc_saves = 0
         self.vacc = vacc_percentage * pop_size
         self.vacc_percentage = vacc_percentage
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(virus_name, pop_size, vacc_percentage, initial_infected)
@@ -94,8 +95,10 @@ class Simulation(object):
         while self._simulation_should_continue():
             self.time_step()
             time_step_counter += 1
-            # log_time_step()
         print('The simulation has ended after {} turns.'.format(time_step_counter))
+        print('Total Death percentage: {}'.format((self.total_dead/self.pop_size) * 100))
+        print('Percent Infected: {}'.format((self.total_infected/self.pop_size) * 100))
+        print('Vaccination saves: {}'.format(self.vacc_saves))
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step
@@ -126,9 +129,9 @@ class Simulation(object):
                                     rand = self.population[random.randint(0, len(self.population)-1)]
                             if rand.is_alive:
                                 interactions += 1
-                                if not rand.is_vaccinated:
-                                    self.interaction(x, rand)
+                                self.interaction(x, rand)
             interacted = []
+            interactions = 0
 
         self.kill_infected()
         self._infect_newly_infected()
@@ -156,6 +159,7 @@ class Simulation(object):
                 self.logger.log_interaction(person, random_person, True, False, False)
         else:
             self.logger.log_interaction(person, random_person, False, True, False)
+            self.vacc_saves += 1
 
 
     def _infect_newly_infected(self):

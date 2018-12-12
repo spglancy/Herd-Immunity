@@ -1,11 +1,16 @@
 1. What were the inputs you gave the simulation? (Population size, percent vaccinated, virus name, mortality rate,  reproductive rate)
-
+Virus: cholera
+Reproductive Rate:.0213
+Mortality Rate: .0163
+Pop Size: 10000
+Percent Vaccinated: .01
 
 1. What percentage of the population became infected at some point before the virus burned out?
-
+4.1%
 
 1.  What percentage of the population died from the virus?
-
+.06%
 
 1.  Out of all interactions sick individuals had during the entire simulation, how many total interactions did we see where a
 vaccination saved a person from potentially becoming infected?
+179

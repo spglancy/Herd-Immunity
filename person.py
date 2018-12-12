@@ -16,7 +16,7 @@ class Person(object):
         '''
         self._id = _id
         self.is_alive = True # Boolean
-        self.is_vaccinated = None # Boolean
+        self.is_vaccinated = is_vaccinated # Boolean
         self.infection = infection # Virus or None
 
     def did_survive_infection(self):
