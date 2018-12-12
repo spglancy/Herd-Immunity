@@ -13,7 +13,7 @@ class Logger(object):
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        self.file_name = None
+        self.file_name = file_name
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
@@ -22,7 +22,7 @@ class Logger(object):
         parameters of the simulation as the first line of the file.
         '''
         file = open(self.file_name, "w")
-        file.write("Population Size: {}\nPercent Vaccinated: {}\nVirus Name: {}\nMortality Rate: {}\nInfection Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate))
+        file.write("Population Size: {}\nPercent Vaccinated: {}\nVirus Name: {}\nMortality Rate: {}\nInfection Rate: {}\n".format(pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num))
         # TODO: Finish this method. This line of metadata should be tab-delimited
         # it should create the text file that we will store all logs in.
         # TIP: Use 'w' mode when you open the file. For all other methods, use
@@ -46,9 +46,11 @@ class Logger(object):
             file.write("{} infects {}\n".format(person._id, random_person._id))
         elif not did_infect:
             if random_person_vacc == True:
-                file.write("{} did not infect {} because they were vaccinated\n".format(person._id, random_person._id))
+                file.write("Person {} did not infect {} because they were vaccinated\n".format(person._id, random_person._id))
             elif random_person_sick == True:
-                file.write("{} did not infect {} because they were already sick\n".format(person._id, random_person._id))
+                file.write("Person {} did not infect {} because they were already sick\n".format(person._id, random_person._id))
+            else:
+                file.write("Person {} failed to infect {}\n".format(person._id, random_person._id))
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
@@ -63,12 +65,9 @@ class Logger(object):
         '''
         file = open(self.file_name, "a")
         if did_die_from_infection:
-            file.write("{} died from infection\n".format(person._id))
+            file.write("Person {} died from infection\n".format(person._id))
         elif not did_die_from_infection:
-            file.write("{} survived the infection\n".format(person._id))
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
+            file.write("Person {} survived the infection\n".format(person._id))
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
