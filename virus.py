@@ -13,7 +13,7 @@ class Virus(object):
 def test_virus_instantiation():
     #TODO: Create your own test that models the virus you are working with
     '''Check to make sure that the virus instantiator is working.'''
-    virus = Virus("Cholera", 2.13, 0.163)
+    virus = Virus("Cholera", .0213, 0.163)
     assert virus.name == "Cholera"
     assert virus.repro_rate == 2.13
     assert virus.mortality_rate == 0.163

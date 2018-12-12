@@ -1,6 +1,6 @@
 import random
 import pytest
-import virus from Virus
+from virus import Virus
 
 
 class Person(object):

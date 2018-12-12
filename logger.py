@@ -44,7 +44,7 @@ class Logger(object):
         file = open(self.file_name, "a")
         if did_infect == True:
             file.write("{} infects {}\n".format(person._id, random_person._id))
-        elif did_infect not True:
+        elif not did_infect:
             if random_person_vacc == True:
                 file.write("{} did not infect {} because they were vaccinated\n".format(person._id, random_person._id))
             elif random_person_sick == True:
